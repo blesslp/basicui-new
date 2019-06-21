@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<top.blesslp.view.FitsSystemLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/qmui_config_color_white"
+    android:orientation="vertical">
+
+    <top.blesslp.view.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:titleBar_title="我是界面A"
+        app:titlebar_backgroundColor="@color/qmui_config_color_blue"
+        app:titlebar_leftAsGoBack="true" />
+
+    <com.qmuiteam.qmui.widget.QMUIVerticalTextView
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="我是第一页"
+        android:textColor="@color/qmui_config_color_red"
+        android:textSize="20dp" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaButton
+        android:id="@+id/btnJump"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JumpNextPage" />
+
+
+</top.blesslp.view.FitsSystemLinearLayout>

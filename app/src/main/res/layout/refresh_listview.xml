@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mRefreshView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlEnableAutoLoadMore="true"
+    app:srlEnableFooterTranslationContent="true"
+    app:srlEnableHeaderTranslationContent="false"
+    app:srlEnableLoadMoreWhenContentNotFull="false"
+    app:srlEnableScrollContentWhenLoaded="true"
+    app:srlFooterMaxDragRate="2"
+    app:srlHeaderMaxDragRate="2">
+
+    <com.scwang.smartrefresh.header.MaterialHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_srlBackgroundColor="@color/qmui_config_color_gray_9" />
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

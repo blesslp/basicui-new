@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<top.blesslp.view.FitsSystemLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/qmui_config_color_white"
+    android:orientation="vertical">
+
+    <top.blesslp.view.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:titleBar_title="我是界面D"
+        app:titleBar_titleColor="@color/qmui_config_color_white"
+        app:titlebar_backgroundColor="@color/qmui_btn_blue_bg"
+        app:titlebar_leftAsGoBack="true" />
+
+    <include layout="@layout/refresh_listview" />
+
+
+</top.blesslp.view.FitsSystemLinearLayout>
