@@ -14,11 +14,12 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
+import top.blesslp.intf.BackInterceptorIntf;
 import top.blesslp.intf.BasePresenter;
 import top.blesslp.intf.IBaseView;
 import top.blesslp.intf.PresenterProxy;
 
-public abstract class BasicFragment extends QMUIFragment implements IBaseView, UIEventFun,EasyPermissions.PermissionCallbacks,IViewEventChannel {
+public abstract class BasicFragment extends QMUIFragment implements IBaseView, UIEventFun,EasyPermissions.PermissionCallbacks,IViewEventChannel,BackInterceptorIntf {
     private DialogProxy mDialogProxy;
     private PresenterProxy mPresenterProxy;
     private Handler mUIHandler = new Handler();
