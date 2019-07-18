@@ -32,7 +32,7 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
      * @param channel
      */
     public void addViewChannel(IViewEventChannel channel) {
-        if (channel == null) return;
+        if (channel == null || viewChannels.contains(channel)) return;
         viewChannels.add(channel);
     }
 
