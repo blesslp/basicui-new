@@ -94,15 +94,20 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
         initEvent();
     }
 
-    void onStop(){}
+    protected void onStop() {
+    }
 
-    void onPause(){}
+    protected void onPause() {
+    }
 
-    void onResume(){}
+    protected void onResume() {
+    }
 
-    void onCreate(){}
+    protected void onCreate() {
+    }
 
-    void onDestroy(){}
+    protected void onDestroy() {
+    }
 
 
     public Context getContext() {
@@ -237,7 +242,7 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
 
     @Override
     public void loginOut() {
-        if(target == null)return;
+        if (target == null) return;
         IBaseView view = getTarget();
         view.loginOut();
     }
@@ -254,10 +259,9 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
 
     @Override
     public void addPresenter(BasePresenter presenter) {
-        if(mPresenterProxy == null)return;
+        if (mPresenterProxy == null) return;
         mPresenterProxy.addPresenter(presenter);
     }
-
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
@@ -268,6 +272,7 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
 
         onDestroy();
     }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void __lifeCycle__onCreate() {
         onCreate();
@@ -282,12 +287,11 @@ public abstract class BasicView implements IBaseView, UIEventFun, LifecycleObser
     void __lifeCycle__onStop() {
         onStop();
     }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     void __lifeCycle__onResume() {
         onResume();
     }
-
-
 
 
 }
