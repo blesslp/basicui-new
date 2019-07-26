@@ -19,6 +19,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import top.blesslp.R;
+import top.blesslp.intf.IRefreshHelper_EmptyView;
 
 
 /**
@@ -30,6 +31,8 @@ public final class RefreshViewHelper {
     private RecyclerView mRecyclerView;
     private SmartRefreshLayout mRefreshView;
     private Context mContext;
+    private static IRefreshHelper_EmptyView mEmptyDealer;
+    private BaseQuickAdapter mAdapter;
 
     private int currentPosition = 0;
     private int currentPosOffset = 0;
@@ -37,26 +40,18 @@ public final class RefreshViewHelper {
     private AtomicInteger mCurrentPage = new AtomicInteger(initalPageNo);
     private AtomicInteger mPageSize = new AtomicInteger(10);
     private OnRefreshListener mRefreshListener;
-
-    public RefreshViewHelper(Activity mContext, boolean canLoadMoreEnable, boolean canRefreshEnable) {
-        this.mContext = mContext;
-        this.mRefreshView = (SmartRefreshLayout) mContext.findViewById(R.id.mRefreshView);
-        this.mRecyclerView = (RecyclerView) mContext.findViewById(R.id.mRecyclerView);
-        setRefreshEnable(canRefreshEnable);
-        setLoadMoreEnable(canLoadMoreEnable);
-    }
+    private View emptyView;
 
     public RefreshViewHelper(Activity mContext, boolean canLoadMoreEnable) {
         this(mContext, canLoadMoreEnable, true);
     }
 
-    public RefreshViewHelper(View rootView, boolean canLoadMoreEnable, boolean canRefreshEnable) {
-        this.mContext = rootView.getContext();
-        final View contentView = rootView;
-        this.mRefreshView = (SmartRefreshLayout) contentView.findViewById(R.id.mRefreshView);
-        this.mRecyclerView = (RecyclerView) contentView.findViewById(R.id.mRecyclerView);
-        setLoadMoreEnable(canLoadMoreEnable);
+    public RefreshViewHelper(Activity mContext, boolean canLoadMoreEnable, boolean canRefreshEnable) {
+        this.mContext = mContext;
+        this.mRefreshView = mContext.findViewById(R.id.mRefreshView);
+        this.mRecyclerView = mContext.findViewById(R.id.mRecyclerView);
         setRefreshEnable(canRefreshEnable);
+        setLoadMoreEnable(canLoadMoreEnable);
     }
 
     public RefreshViewHelper(Fragment mContext, boolean canLoadMoreEnable) {
@@ -106,14 +101,40 @@ public final class RefreshViewHelper {
         }
     }
 
+    public RefreshViewHelper(View rootView, boolean canLoadMoreEnable, boolean canRefreshEnable) {
+        this.mContext = rootView.getContext();
+        final View contentView = rootView;
+        this.mRefreshView = contentView.findViewById(R.id.mRefreshView);
+        this.mRecyclerView = contentView.findViewById(R.id.mRecyclerView);
+        setLoadMoreEnable(canLoadMoreEnable);
+        setRefreshEnable(canRefreshEnable);
+    }
+
+    public static void setmEmptyDealer(IRefreshHelper_EmptyView emptyDealer) {
+        RefreshViewHelper.mEmptyDealer = emptyDealer;
+    }
+
     private void setEmptyView(BaseQuickAdapter<?, ?> mAdapter, @LayoutRes int layoutId) {
+        this.mAdapter = mAdapter;
         try {
             mAdapter.bindToRecyclerView(mRecyclerView);
         } catch (Exception e) {
             mRecyclerView.setAdapter(mAdapter);
         }
         mAdapter.setEmptyView(layoutId);
+        this.emptyView = mAdapter.getEmptyView();
+        if(this.emptyView == null)return;
+        if(mEmptyDealer == null) {
+            this.emptyView.setVisibility(View.INVISIBLE);
+        }else{
+            mEmptyDealer.initEmptyView(mAdapter,emptyView);
+        }
     }
+
+    public View getEmptyView() {
+        return emptyView;
+    }
+
 
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
@@ -171,6 +192,12 @@ public final class RefreshViewHelper {
     public void finishLoadOrRefresh() {
         if (isRefreshing()) {
             setOnRefreshComplete();
+            if(this.emptyView == null)return;
+            if(mEmptyDealer == null) {
+                this.emptyView.setVisibility(View.VISIBLE);
+            }else{
+                mEmptyDealer.initEmptyView(mAdapter,emptyView);
+            }
         } else {
             setOnLoadMoreComplete();
         }
@@ -205,7 +232,7 @@ public final class RefreshViewHelper {
     }
 
     public interface OnRefreshListener {
-        public void onRefresh(final RefreshViewHelper helper, final int pageNo, final int pageSize);
+        void onRefresh(final RefreshViewHelper helper, final int pageNo, final int pageSize);
     }
 
 }
