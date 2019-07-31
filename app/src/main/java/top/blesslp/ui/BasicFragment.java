@@ -19,7 +19,7 @@ import top.blesslp.intf.BasePresenter;
 import top.blesslp.intf.IBaseView;
 import top.blesslp.intf.PresenterProxy;
 
-public abstract class BasicFragment extends QMUIFragment implements IBaseView, UIEventFun,EasyPermissions.PermissionCallbacks,IViewEventChannel,BackInterceptorIntf {
+public abstract class BasicFragment extends QMUIFragment implements IBaseView, UIEventFun, EasyPermissions.PermissionCallbacks, IViewEventChannel, BackInterceptorIntf {
     private DialogProxy mDialogProxy;
     private PresenterProxy mPresenterProxy;
     private Handler mUIHandler = new Handler();
@@ -51,13 +51,38 @@ public abstract class BasicFragment extends QMUIFragment implements IBaseView, U
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(hasInit == 1) {
-            initPresenter();
-            initListeners();
-            initRecyclerView();
-            initData();
-            hasInit = 2;        //init success and not init again
+        if (hasInit == 1) {
+            if (isDelayInitView()) {
+                mUIHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        init();
+                    }
+                }, delayInitViewTimeInMs());
+            } else {
+                init();
+            }
         }
+    }
+
+    private void init() {
+        initPresenter();
+        initListeners();
+        initRecyclerView();
+        initData();
+        hasInit = 2;        //init success and not init again
+    }
+
+    protected boolean isDelayInitView() {
+        return false;
+    }
+
+    protected int delayInitViewTimeInMs() {
+        return 30;
+    }
+
+    public void onArgumentsUpdated(Bundle args) {
+
     }
 
     @Override
@@ -122,18 +147,18 @@ public abstract class BasicFragment extends QMUIFragment implements IBaseView, U
     }
 
     @Override
-    public void showFailed(String message,Runnable task) {
-        mDialogProxy.showFailed(message,task);
+    public void showFailed(String message, Runnable task) {
+        mDialogProxy.showFailed(message, task);
     }
 
     @Override
-    public void showSuccess(String message,Runnable task) {
-        mDialogProxy.showSuccess(message,task);
+    public void showSuccess(String message, Runnable task) {
+        mDialogProxy.showSuccess(message, task);
     }
 
     @Override
-    public void showTips(String message,Runnable task) {
-        mDialogProxy.showTips(message,task);
+    public void showTips(String message, Runnable task) {
+        mDialogProxy.showTips(message, task);
     }
 
     @Override
