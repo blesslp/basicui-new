@@ -30,6 +30,11 @@ public abstract class BasicFragment extends QMUIFragment implements IBaseView, U
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      */
 
+    @Override
+    public boolean onPressed() {
+        return false;
+    }
+
     private PermissionWraper mPermissionWraper;
 
     @Override

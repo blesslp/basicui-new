@@ -36,5 +36,4 @@ public class AFragment extends BasicFragment {
 
     }
 
-
 }

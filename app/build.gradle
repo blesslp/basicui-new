@@ -29,8 +29,12 @@ dependencies {
     //QMUI
     api 'com.qmuiteam:qmui:1.2.0'
     api 'com.qmuiteam:arch:0.3.1'
-    api 'com.github.blesslp.Pastry:pastry:v1.2.5'
-    api 'com.github.blesslp.Pastry:plugins:v1.2.5'
+
+    api('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+    api "com.squareup.retrofit2:retrofit:2.6.1"
+    api "com.squareup.retrofit2:converter-gson:2.6.1"
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-21'
     //没有使用特殊Header，可以不加这行
