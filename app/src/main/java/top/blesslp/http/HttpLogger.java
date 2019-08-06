@@ -21,7 +21,7 @@ public class HttpLogger implements HttpLoggingInterceptor.Logger {
         // 请求或者响应开始
         if (message.startsWith("--> POST") || message.startsWith("--> GET")) {
             mMessage.setLength(0);
-            mMessage.append(message.replaceAll("--> ", ""));
+            mMessage.append(message.replaceAll("--> ", "").concat("\n"));
             return;
         }
 
