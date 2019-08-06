@@ -26,7 +26,7 @@ public interface DemoContract {
         public void getBannerList(){
             final IDemoView view = getView();
             view.showLoading("正在加载...",false);
-            api.getBannerList().enqueue(new Callback<NetResult<List<Banner>>>() {
+            api.getBannerList(0,20).enqueue(new Callback<NetResult<List<Banner>>>() {
                 @Override
                 public void onResponse(Call<NetResult<List<Banner>>> call, Response<NetResult<List<Banner>>> response) {
                     NetResult<List<Banner>> body = response.body();
