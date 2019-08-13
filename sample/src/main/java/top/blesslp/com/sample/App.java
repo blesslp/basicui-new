@@ -2,11 +2,11 @@ package top.blesslp.com.sample;
 
 import android.app.Application;
 
+import http.logging.HttpLogger;
+import http.logging.HttpLoggingInterceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.blesslp.http.HttpLogger;
 import top.blesslp.http.RetrofitWrapper;
 
 public class App extends Application {
