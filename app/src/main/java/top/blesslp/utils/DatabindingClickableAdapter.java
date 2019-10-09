@@ -1,6 +1,7 @@
 package top.blesslp.utils;
 
-import android.support.annotation.LayoutRes;
+
+import androidx.annotation.LayoutRes;
 
 /**
  * Administrator on 2017/7/12 0012.
@@ -10,7 +11,7 @@ import android.support.annotation.LayoutRes;
 public class DatabindingClickableAdapter<T> extends DatabindingAdapter<T> {
     private int[] viewIds;
 
-    public DatabindingClickableAdapter(@LayoutRes int layoutResId, int br,int... viewIds) {
+    public DatabindingClickableAdapter(@LayoutRes int layoutResId, int br, int... viewIds) {
         super(layoutResId,br);
         this.viewIds = viewIds;
     }

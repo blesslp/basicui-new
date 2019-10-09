@@ -1,6 +1,7 @@
 package top.blesslp.com.sample.fragments;
 
-import android.support.v7.widget.LinearLayoutManager;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 

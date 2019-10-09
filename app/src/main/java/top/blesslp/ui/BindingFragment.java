@@ -1,8 +1,9 @@
 package top.blesslp.ui;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 public abstract class BindingFragment<T extends ViewDataBinding> extends BasicFragment implements DataBindingable {
 

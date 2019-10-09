@@ -1,7 +1,7 @@
 package top.blesslp.ui;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 
 public abstract class BindingActivity<T extends ViewDataBinding> extends BasicActivity implements DataBindingable {
 

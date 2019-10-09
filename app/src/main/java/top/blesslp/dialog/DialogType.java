@@ -1,6 +1,7 @@
 package top.blesslp.dialog;
 
-import android.support.annotation.IntDef;
+
+import androidx.annotation.IntDef;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 

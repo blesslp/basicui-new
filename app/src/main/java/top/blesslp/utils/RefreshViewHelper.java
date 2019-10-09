@@ -2,11 +2,12 @@ package top.blesslp.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.LayoutRes;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.SizeUtils;
 import com.blankj.utilcode.util.ToastUtils;

@@ -1,6 +1,6 @@
 package top.blesslp.ui;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 
 /**
  * Administrator on 2017/6/20 0020.
