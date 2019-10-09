@@ -1,4 +1,4 @@
-package com.chaychan.news.utils
+package top.blesslp.http
 
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
@@ -9,7 +9,7 @@ import java.io.File
 
 val FILE_MEDIA: MediaType = "multipart/form-data".toMediaType()
 val TEXT_MEDIA: MediaType = "text/plain".toMediaType()
-inline fun File.partOf() = MultipartBody.Part.createFormData("file", name, asRequestBody(FILE_MEDIA))
+inline fun File.partOf(file:String = "file") = MultipartBody.Part.createFormData(file, name, asRequestBody(FILE_MEDIA))
 
 inline fun String.partOf() = toRequestBody(TEXT_MEDIA)
 
