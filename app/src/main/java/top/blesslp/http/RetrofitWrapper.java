@@ -11,6 +11,7 @@ public class RetrofitWrapper {
     private OkHttpClient client;
     private Retrofit retrofit;
     private boolean isInit =false;
+
     public static RetrofitWrapper getInstance() {
         if (_INSTANCE == null) {
             _INSTANCE = new RetrofitWrapper();
