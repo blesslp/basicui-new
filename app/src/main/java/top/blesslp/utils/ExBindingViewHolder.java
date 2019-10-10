@@ -33,7 +33,6 @@ public class ExBindingViewHolder extends BaseViewHolder {
         try {
             viewDataBinding = DataBindingUtil.bind(itemView);
         } catch (Exception e) {
-            e.printStackTrace();
         } finally {
         }
     }

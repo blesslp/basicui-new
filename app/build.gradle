@@ -28,7 +28,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //QMUI
     api 'com.qmuiteam:qmui:1.4.0'
@@ -46,5 +46,5 @@ dependencies {
     api 'com.blankj:utilcode:1.25.9'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45-androidx'
     api 'me.jessyan:autosize:1.1.2'
-    api 'pub.devrel:easypermissions:2.0.1'
+    api 'pub.devrel:easypermissions:3.0.0'
 }
