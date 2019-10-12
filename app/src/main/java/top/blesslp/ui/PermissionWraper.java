@@ -75,7 +75,7 @@ public abstract class PermissionWraper<T> {
         //从权限设置页面跳回
         if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             isDeniedPermissionAndNotModify = false;
-            if (hasPermissions(mPermissionSession.permissions)) {
+            if (hasPermissions(mPermissionSession.permissions) && mPermissionSession.listener != null) {
                 //如果在设置里面, 用户已经打开所需要权限,则可以进入到回调中去
 //                requestPermission(mPermissionSession.permissionRequestCode,mPermissionSession.permissions,mPermissionSession.tips,mPermissionSession.listener);
                 mPermissionSession.listener.onGranted(mPermissionSession.permissionRequestCode);
@@ -119,7 +119,7 @@ public abstract class PermissionWraper<T> {
 
     private final static class PermissionSession {
         private int permissionRequestCode;
-        private String[] permissions;
+        private String[] permissions = new String[0];
         private String tips;
         private PermissionGrantedListener listener;
 
