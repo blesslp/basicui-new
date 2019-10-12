@@ -50,11 +50,13 @@ public abstract class PermissionWraper<T> {
     }
 
     void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(mPermissionSession == null) return;
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, getHost());
     }
 
     void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         //用户同意了权限
+        if(mPermissionSession == null) return;
         int grantedPermsSize = perms.size();
         int userNeedPermsSize = mPermissionSession.permissions.length;
         //如果用户已同意的权限数 == 所有申请的权限数,则代表完全同意权限
@@ -64,6 +66,7 @@ public abstract class PermissionWraper<T> {
     }
 
     void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if(mPermissionSession == null) return;
         //判断是不是某些权限被永久关闭了,如果有, 则让其去设置里面开
         if (somePermissionPermanentlyDenied(perms) && !isDeniedPermissionAndNotModify) {
             this.isDeniedPermissionAndNotModify = true;
@@ -72,6 +75,7 @@ public abstract class PermissionWraper<T> {
     }
 
     void handleFromSettings(int requestCode, int resultCode, Intent data) {
+        if(mPermissionSession == null) return;
         //从权限设置页面跳回
         if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             isDeniedPermissionAndNotModify = false;
@@ -119,7 +123,7 @@ public abstract class PermissionWraper<T> {
 
     private final static class PermissionSession {
         private int permissionRequestCode;
-        private String[] permissions = new String[0];
+        private String[] permissions;
         private String tips;
         private PermissionGrantedListener listener;
 
