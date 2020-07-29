@@ -9,7 +9,7 @@ import com.orhanobut.logger.PrettyFormatStrategy
 
 class HttpLogger(private val tag: String) : HttpLoggingInterceptor.Logger {
     private val GSON = GsonBuilder().setPrettyPrinting().create()
-    private val mMessage = StringBuilder()
+    private val mMessage = StringBuffer()
 
     init {
         Logger.clearLogAdapters()

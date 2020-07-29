@@ -1,22 +1,34 @@
 package top.blesslp.http
 
-import okhttp3.MediaType
+import com.blankj.utilcode.util.GsonUtils
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-val FILE_MEDIA: MediaType = "multipart/form-data".toMediaType()
-val TEXT_MEDIA: MediaType = "text/plain".toMediaType()
-inline fun File.partOf(file:String = "file") = MultipartBody.Part.createFormData(file, name, asRequestBody(FILE_MEDIA))
 
-inline fun String.partOf() = toRequestBody(TEXT_MEDIA)
+const val CONTENT_TYPE_JSON = "application/json; charset=utf-8"
+const val MULTIPART_TYPE = "multipart/form-data"
+const val TEXT_MEDIA: String = "text/plain"
 
-inline fun <T> wrap(block: () -> T): T? {
-    try {
-        return block.invoke()
-    } catch (e: Exception) {
-        return null
-    }
+inline fun String.toBody(type: String): RequestBody {
+    return this.toRequestBody(type.toMediaType())
+}
+
+val EMPTY_JSONBODY = "".toJsonBody()
+
+inline fun String.toJsonBody(): RequestBody = toBody(CONTENT_TYPE_JSON)
+
+inline fun Any.toJsonBody() = GsonUtils.toJson(this).toJsonBody()
+inline fun Any.toJsonStr() = GsonUtils.toJson(this)
+inline fun Any.toText() = this.toString().toBody(TEXT_MEDIA)
+inline fun File.toPart(key: String): MultipartBody.Part {
+    val asRequestBody = this.asRequestBody(MULTIPART_TYPE.toMediaType())
+    return MultipartBody.Part.createFormData(key, this.name, asRequestBody)
+}
+
+inline fun <K, V> maps(block: HashMap<K, V>.() -> Unit): HashMap<K, V> {
+    return hashMapOf<K, V>().apply(block)
 }
