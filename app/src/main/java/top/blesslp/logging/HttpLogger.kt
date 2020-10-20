@@ -35,7 +35,12 @@ class HttpLogger(private val tag: String) : HttpLoggingInterceptor.Logger {
 
         // 以{}或者[]形式的说明是响应结果的json数据，需要进行格式化
         if (message.startsWith("{") && message.endsWith("}") || message.startsWith("[") && message.endsWith("]")) {
-            message = GSON.toJson(JsonParser().parse(message).asJsonObject)
+            var parse = JsonParser().parse(message)
+            if(parse.isJsonObject) {
+                message = GSON.toJson(parse.asJsonObject)
+            }else{
+                message = GSON.toJson(parse.asJsonArray)
+            }
         }
 
         if (message.startsWith("--> END")) {
