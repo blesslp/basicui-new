@@ -67,11 +67,16 @@ public final class RefreshViewHelper {
     }
 
     public boolean isRefreshing() {
-        return mRefreshView.getState()==RefreshState.Refreshing;
+        return mRefreshView.getState() == RefreshState.Refreshing;
     }
 
     public void setRefreshEnable(boolean canRefresh) {
         mRefreshView.setEnableRefresh(canRefresh);
+    }
+
+    public void clearNoData() {
+        mRefreshView.setNoMoreData(false);
+        mCurrentPage.set(initalPageNo);
     }
 
     public void setLayoutManagerAndAdapter(final RecyclerView.LayoutManager layoutManager, RecyclerView.Adapter<?> mAdapter) {
